@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    var count = 0;
+    function increment() {
+        count++;
+        update();
+    }
+    function reset() {
+        if (count > 0 && confirm('カウンターをリセットしますか?')) {
+            count = 0;
+            update();
+        }
+    }
+    function memory() {
+      var str = '000'+count;
+      $('.memory').get(0).innerHTML = str.substring(str.length - 3, str.length);
+
+    }
+    function update() {
+        var str = '000' + count;
+        str = str.substring(str.length - 3, str.length);
+        var digits = $('.counter-digit');
+        for (var i = 0; i < str.length; i++) {
+            digits.get(i).src = 'img/no_0' + str[i] + '.png'
+        }
+    }
+    $(function() {
+        $('.count-button').on("touchend", increment);
+        /*$('.count-button').on("click", increment);*/
+        $('.reset-button').on("touchend", reset);
+        /*$('.count-button').on("click", reset);*/
+        $('.memory-button').on("touchend", memory);
+        update();
+    })
+    </script>
+</head>
+<body>
+<div class="counter">
+    <img src="img/no_00.png" width="55" class="counter-digit">
+    <img src="img/no_00.png" width="55" class="counter-digit">
+    <img src="img/no_00.png" width="55" class="counter-digit">
+    <!--<img src="img/no_00.png" width="55" class="counter-digit">-->
+</div>
+<div class="reset-button-wrapper">
+    <button class="reset-button"><img src="img/btn_reset_normal.png" width="64"></button>
+</div>
+<button class="count-button"><img src="img/btn_count_normal.png" width="127"></button>
+<div class="memory">0000</div>
+<button class="memory-button" style="background-color:yellow;">Memory(Nanako Kurosaka)</button>
+</div>
+</body>
+</html>
